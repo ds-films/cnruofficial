@@ -1,0 +1,267 @@
+/* style.css */
+
+/* --- Импорт шрифтов --- */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Unbounded:wght@600;800&display=swap');
+
+/* --- Переменные и Глобальные стили --- */
+:root {
+    --primary-red: #D90429;
+    --dark-bg: #121212;
+    --text-white: #f5f5f5;
+    --card-bg: #1d1d1d;
+    --font-body: 'Jost', sans-serif;
+    --font-heading: 'Unbounded', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+a {
+    color: var(--primary-red);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--text-white);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-red);
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* --- Хедер и Навигация --- */
+.site-header {
+    background-color: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #2a2a2a;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.main-nav a {
+    color: var(--text-white);
+    font-weight: 500;
+    font-size: 1rem;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--primary-red);
+    border-bottom-color: var(--primary-red);
+}
+
+/* --- Главная страница --- */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(rgba(18, 18, 18, 0.7), var(--dark-bg)), url('https://i.postimg.cc/rsM3fw9B/2019.jpg') no-repeat center center/cover;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-red);
+    color: var(--text-white);
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #b80020;
+    transform: translateY(-2px);
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.item-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(217, 4, 41, 0.3);
+}
+
+.item-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.item-card-content {
+    padding: 15px;
+}
+
+.item-card-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-weight: 700;
+}
+
+/* --- Страницы Фильмов и Сериалов --- */
+.content-list .item {
+    display: flex;
+    gap: 30px;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.item-poster img {
+    width: 250px;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details h2 {
+    margin-top: 0;
+    font-size: 2rem;
+}
+
+.item-meta {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.item-meta li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.item-meta strong {
+    color: var(--primary-red);
+    margin-right: 10px;
+    display: inline-block;
+    min-width: 130px;
+}
+
+.item-description {
+    margin-bottom: 25px;
+}
+
+
+/* --- Страница "О нас" и "Категории" --- */
+.static-page {
+    min-height: 60vh;
+}
+.category-links a {
+    display: block;
+    background-color: var(--card-bg);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    color: var(--text-white);
+    transition: background-color 0.3s ease;
+}
+.category-links a:hover {
+    background-color: var(--primary-red);
+}
+
+/* --- Футер --- */
+.site-footer {
+    background-color: #000;
+    color: #888;
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 40px;
+    border-top: 1px solid #2a2a2a;
+}
+
+/* --- Адаптивность --- */
+@media (max-width: 768px) {
+    .main-nav ul {
+        display: none; /* Скрываем меню на мобильных, можно добавить бургер-меню */
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .content-list .item {
+        flex-direction: column;
+    }
+    .item-poster img {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+  }

@@ -1,16 +1,13 @@
 /* style.css */
-
-/* --- Импорт шрифтов --- */
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Unbounded:wght@600;800&display=swap');
 
-/* --- Переменные и Глобальные стили --- */
 :root {
-    --primary-red: #D90429;
-    --dark-bg: #121212;
+    --primary-red: #E50914;
+    --dark-bg: #141414;
     --text-white: #f5f5f5;
     --card-bg: #1d1d1d;
     --font-body: 'Jost', sans-serif;
-    --font-heading: 'Unbounded', cursive;
+    --font-heading: 'Unbounded', sans-serif;
 }
 
 * {
@@ -27,241 +24,141 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 95%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 0;
 }
 
-a {
-    color: var(--primary-red);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
+a { color: var(--text-white); text-decoration: none; }
+h1, h2, h3 { font-family: var(--font-heading); margin-bottom: 20px; }
 
-a:hover {
-    color: var(--text-white);
-}
-
-h1, h2, h3 {
-    font-family: var(--font-heading);
-    color: var(--primary-red);
-    margin-bottom: 20px;
-}
-
-p {
-    margin-bottom: 15px;
-}
-
-/* --- Хедер и Навигация --- */
+/* --- HEADER --- */
 .site-header {
-    background-color: rgba(18, 18, 18, 0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid #2a2a2a;
-    padding: 15px 0;
-    position: sticky;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 10%, rgba(0,0,0,0));
+    padding: 20px 4%;
+    position: fixed;
     top: 0;
+    width: 100%;
     z-index: 1000;
-}
-
-.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    transition: background-color 0.4s ease;
 }
-
-.logo img {
-    height: 40px;
+.site-header.scrolled {
+    background-color: #101010;
 }
+.logo img { height: 35px; }
+.main-nav ul { list-style: none; display: flex; gap: 25px; }
+.main-nav a { font-weight: 500; transition: color 0.3s ease; }
+.main-nav a:hover, .main-nav a.active { color: var(--primary-red); }
 
-.main-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-
-.main-nav a {
-    color: var(--text-white);
-    font-weight: 500;
-    font-size: 1rem;
-    padding-bottom: 5px;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.main-nav a:hover,
-.main-nav a.active {
-    color: var(--primary-red);
-    border-bottom-color: var(--primary-red);
-}
-
-/* --- Главная страница --- */
+/* --- HERO SECTION (Netflix Style) --- */
 .hero {
-    text-align: center;
-    padding: 80px 20px;
-    background: linear-gradient(rgba(18, 18, 18, 0.7), var(--dark-bg)), url('https://i.postimg.cc/rsM3fw9B/2019.jpg') no-repeat center center/cover;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5%;
+    color: white;
+    background-size: cover;
+    background-position: center top;
+    position: relative;
 }
-
-.hero h1 {
-    font-size: 3rem;
-    font-weight: 800;
+.hero::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, var(--dark-bg) 5%, rgba(20, 20, 20, 0.2) 50%, rgba(20, 20, 20, 0.8) 100%);
 }
-
-.hero p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto 30px auto;
-}
-
+.hero-content { position: relative; z-index: 2; max-width: 50%; }
+.hero-content h1 { font-size: 3.5rem; text-transform: uppercase; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+.hero-content p { font-size: 1.2rem; margin-bottom: 25px; text-shadow: 1px 1px 4px rgba(0,0,0,0.9); }
 .btn {
-    display: inline-block;
-    background-color: var(--primary-red);
-    color: var(--text-white);
-    padding: 12px 30px;
+    display: inline-block; background-color: var(--primary-red); color: var(--text-white);
+    padding: 12px 30px; border-radius: 5px; font-weight: bold;
+    text-transform: uppercase; transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.btn:hover { background-color: #f6121d; transform: scale(1.05); }
+
+/* --- CONTENT ROWS (Carousels) --- */
+.content-section { margin-top: -150px; position: relative; z-index: 5; }
+.content-row { margin-bottom: 40px; position: relative; }
+.content-row h2 { margin-left: 2.5%; font-size: 1.6rem; }
+.content-row-inner {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    padding: 0 2.5%;
+    scroll-behavior: smooth;
+}
+.content-row-inner::-webkit-scrollbar { display: none; }
+.item-card {
+    min-width: 280px;
+    margin-right: 10px;
     border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
 }
-
-.btn:hover {
-    background-color: #b80020;
-    transform: translateY(-2px);
+.item-card:hover { transform: scale(1.08); z-index: 10; }
+.item-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.item-card-title {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 10px; text-align: center; font-weight: bold;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
 }
+.scroll-btn {
+    position: absolute; top: 55%; transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.6); color: white; border: none;
+    font-size: 2rem; width: 50px; height: 100px;
+    cursor: pointer; z-index: 20; opacity: 0; transition: opacity 0.3s;
+}
+.content-row:hover .scroll-btn { opacity: 1; }
+.scroll-btn.left { left: 0; border-radius: 0 5px 5px 0; }
+.scroll-btn.right { right: 0; border-radius: 5px 0 0 5px; }
 
-.content-grid {
+/* --- GRID PAGE (films.html, serialy.html) --- */
+.grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    padding-top: 100px;
 }
+.grid-page h1 { padding-top: 100px; }
 
-.item-card {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.item-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(217, 4, 41, 0.3);
-}
-
-.item-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.item-card-content {
-    padding: 15px;
-}
-
-.item-card-content h3 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: var(--text-white);
-    font-family: var(--font-body);
-    font-weight: 700;
-}
-
-/* --- Страницы Фильмов и Сериалов --- */
-.content-list .item {
+/* --- ITEM DETAIL PAGE --- */
+.item-page-container {
+    padding: 120px 5% 40px;
     display: flex;
-    gap: 30px;
-    background-color: var(--card-bg);
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    gap: 40px;
 }
-
-.item-poster img {
-    width: 250px;
-    height: auto;
-    border-radius: 5px;
-    object-fit: cover;
+.item-poster { flex: 0 0 300px; }
+.item-poster img { width: 100%; border-radius: 8px; }
+.item-details h1 { font-size: 2.8rem; line-height: 1.2; }
+.item-meta { list-style: none; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px 15px; }
+.item-meta li { background-color: #333; padding: 5px 10px; border-radius: 4px; font-size: 0.9rem; }
+.item-meta strong { color: var(--primary-red); margin-right: 5px; }
+.item-description { margin-bottom: 30px; }
+.player-container {
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
 }
-
-.item-details {
-    flex: 1;
+.player-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    border: none;
 }
-
-.item-details h2 {
-    margin-top: 0;
-    font-size: 2rem;
-}
-
-.item-meta {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.item-meta li {
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-}
-
-.item-meta strong {
-    color: var(--primary-red);
-    margin-right: 10px;
-    display: inline-block;
-    min-width: 130px;
-}
-
-.item-description {
-    margin-bottom: 25px;
-}
-
-
-/* --- Страница "О нас" и "Категории" --- */
-.static-page {
-    min-height: 60vh;
-}
-.category-links a {
-    display: block;
-    background-color: var(--card-bg);
-    padding: 20px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    font-family: var(--font-heading);
-    color: var(--text-white);
-    transition: background-color 0.3s ease;
-}
-.category-links a:hover {
-    background-color: var(--primary-red);
-}
-
-/* --- Футер --- */
+/* --- FOOTER --- */
 .site-footer {
-    background-color: #000;
-    color: #888;
-    text-align: center;
-    padding: 25px 20px;
-    margin-top: 40px;
-    border-top: 1px solid #2a2a2a;
+    text-align: center; padding: 40px 20px; margin-top: 40px;
+    border-top: 1px solid #222; color: #888;
 }
 
-/* --- Адаптивность --- */
 @media (max-width: 768px) {
-    .main-nav ul {
-        display: none; /* Скрываем меню на мобильных, можно добавить бургер-меню */
-    }
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-    .content-list .item {
-        flex-direction: column;
-    }
-    .item-poster img {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-        display: block;
-    }
-  }
+    .main-nav { display: none; }
+    .hero-content { max-width: 90%; }
+    .hero-content h1 { font-size: 2.5rem; }
+    .item-page-container { flex-direction: column; }
+    .item-poster { flex: 0 0 auto; max-width: 250px; margin: 0 auto; }
+}

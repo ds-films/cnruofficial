@@ -1,6 +1,5 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Плавный фон хедера при скролле
     const header = document.querySelector('.site-header');
     if (header) {
         window.addEventListener('scroll', () => {
@@ -12,13 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Логика для кнопок прокрутки каруселей
     const scrollButtons = document.querySelectorAll('.scroll-btn');
     scrollButtons.forEach(button => {
         button.addEventListener('click', () => {
             const row = button.parentElement.querySelector('.content-row-inner');
-            const scrollAmount = row.clientWidth * 0.8; // Прокручивать на 80% ширины видимой области
-
+            const scrollAmount = row.clientWidth * 0.9;
             if (button.classList.contains('left')) {
                 row.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             } else {
